@@ -1,11 +1,12 @@
 package com.student.ust.entity;
-
 import lombok.Data;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Set;
-
+/**
+ * The type Student.
+ */
 @Entity
 @Data
 @Table(name="Student_ustbatch_identitymappedbytestest")
@@ -21,8 +22,16 @@ public class Student {
     @OneToOne
     @JoinColumn(name="book_id")
     private  Book book;
-
+    /**
+     * The Email.
+     */
+    @NotNull
+    private String email;
+    /**
+     * The Password.
+     */
+    @NotNull
+    private String password;
     @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "student")
     private Set<Book> bookSet;
-
 }
